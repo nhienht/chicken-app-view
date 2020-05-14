@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "client",
+    "slug": "client",
+    "privacy": "public",
+    "sdkVersion": "36.0.0",
+    "proxy": "https://15e673d0.ngrok.io",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "facebookScheme": "fb853519481774732",
+    "facebookAppId": "853519481774732",
+    "facebookDisplayName": "DCD (Detect chicken disease)",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
