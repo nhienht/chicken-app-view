@@ -12,19 +12,16 @@ export default class Order extends React.Component {
     render() {
         return (
             <CartContext.Consumer>
-                {({ cartItems, Total, order }) =>
+                {({ cartItems, Total, order, onChange, phone, address }) =>
                     <View style={styles.container}>
                         <Text style={styles.title}>Thông tin người nhận</Text>
                         <View style={styles.infor}>
-                            <Text>- Tên người nhận:</Text>
-                            <TextInput placeholder="Nhập tên của bạn ở đây" style={styles.input}
-                                onChangeText={(nameUser) => this.setState({ nameUser })} />
                             <Text>- Số điện thoại người nhận:</Text>
                             <TextInput placeholder="Nhập số điện thoại của bạn ở đây" style={styles.input}
-                                onChangeText={(nameUser) => this.setState({ nameUser })} />
+                                onChange={(e) => onChange(e, "phone")} value={phone}/>
                             <Text>- Địa chỉ người nhận:</Text>
                             <TextInput placeholder="Nhập địa chỉ của bạn ở đây" style={styles.input}
-                                onChangeText={(nameUser) => this.setState({ nameUser })} />
+                                onChange={(e) => onChange(e, "address")} value={address}/>
                         </View> 
                         <Text style={styles.title}>Thông tin sản phẩm </Text>
                         <View style={{ height: '50%' }} >
