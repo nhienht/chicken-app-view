@@ -8,7 +8,7 @@ import { StoreProvider } from './contexts/StoreContext'
 
 const AppContainer = createAppContainer(AppNavigator)
 
-axios.defaults.baseURL = 'https://c900f312.ngrok.io'
+axios.defaults.baseURL = 'https://68fe1be7.ngrok.io'
 console.disableYellowBox = true;
 export default function Features(props) {
   console.ignoredYellowBox = ['Warning: Each'];
@@ -20,7 +20,5 @@ export default function Features(props) {
         </CartProvider>
       </FarmProvider>
     </StoreProvider>
-
-
   );
 }

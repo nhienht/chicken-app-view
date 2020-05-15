@@ -17,9 +17,6 @@ export default function BillItem(props) {
                     <Text style={styles.text}>Ngày đặt hàng: {category.date}</Text>
                         {category.status==0?<Text style={styles.text}>Trạng thái: Chưa xem</Text>: <Text style={styles.text}>Trạng thái: Đã xem</Text>}
                     </View>
-                   
-                   
-
                 </View>
             </View>
         </TouchableOpacity>
