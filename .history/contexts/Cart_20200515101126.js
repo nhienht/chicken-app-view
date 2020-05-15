@@ -92,12 +92,12 @@ export class CartProvider extends React.Component {
         })
     }
 
-    async order(){
+    order(){
         await navigator.geolocation.getCurrentPosition(position => this.setState({
             ly : position.coords.latitude,
             lx: position.coords.longitude
         }))
-        console.log(this.state.ly, this.state.lx)
+        console.log(ly , lx)
     }
 
 

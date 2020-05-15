@@ -38,7 +38,7 @@ export default class Order extends React.Component {
                         <View style={styles.total}>
                             <Text style={styles.money}> Tổng tiền:  {Total}  </Text>
                             <View style={{ flex: 1, justifyContent: 'flex-start' }}>
-                                <TouchableOpacity style={styles.button} onPress={()=> order()}>
+                                <TouchableOpacity style={styles.button} onPress={()=> {order}}>
                                     <Text style={styles.text}>Đặt hàng</Text>
                                 </TouchableOpacity>
                             </View>

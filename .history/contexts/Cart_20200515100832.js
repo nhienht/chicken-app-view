@@ -9,15 +9,12 @@ export class CartProvider extends React.Component {
             chooseProduct: null,
             Count: 0,
             Total: '0',
-            ly: 0,
-            lx: 0
             
         };
         this.addToCart = this.addToCart.bind(this);
         this.chooseToProduct = this.chooseToProduct.bind(this);
         this.changeUnit = this.changeUnit.bind(this);
         this.removeItem = this.removeItem.bind(this);
-        this.order = this.order.bind(this);
     }
 
     // addToCart(product){
@@ -91,16 +88,8 @@ export class CartProvider extends React.Component {
             Total : JSON.stringify(JSON.parse(this.state.Total) - JSON.parse(item.price*count))
         })
     }
-
-    async order(){
-        await navigator.geolocation.getCurrentPosition(position => this.setState({
-            ly : position.coords.latitude,
-            lx: position.coords.longitude
-        }))
-        console.log(this.state.ly, this.state.lx)
-    }
-
-
+    
+    
     render() {
         return (
             <CartContext.Provider value={{
@@ -111,8 +100,7 @@ export class CartProvider extends React.Component {
                 addToCart: this.addToCart,
                 chooseToProduct: this.chooseToProduct,
                 changeUnit: this.changeUnit,
-                removeItem : this.removeItem,
-                order : this.order
+                removeItem : this.removeItem
             }}>
                 {this.props.children}
             </CartContext.Provider>

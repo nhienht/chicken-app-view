@@ -17,7 +17,6 @@ export class CartProvider extends React.Component {
         this.chooseToProduct = this.chooseToProduct.bind(this);
         this.changeUnit = this.changeUnit.bind(this);
         this.removeItem = this.removeItem.bind(this);
-        this.order = this.order.bind(this);
     }
 
     // addToCart(product){
@@ -92,12 +91,12 @@ export class CartProvider extends React.Component {
         })
     }
 
-    async order(){
+    order(){
         await navigator.geolocation.getCurrentPosition(position => this.setState({
             ly : position.coords.latitude,
             lx: position.coords.longitude
         }))
-        console.log(this.state.ly, this.state.lx)
+        console.log(ly , lx)
     }
 
 
@@ -111,8 +110,7 @@ export class CartProvider extends React.Component {
                 addToCart: this.addToCart,
                 chooseToProduct: this.chooseToProduct,
                 changeUnit: this.changeUnit,
-                removeItem : this.removeItem,
-                order : this.order
+                removeItem : this.removeItem
             }}>
                 {this.props.children}
             </CartContext.Provider>

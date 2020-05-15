@@ -97,7 +97,7 @@ export class CartProvider extends React.Component {
             ly : position.coords.latitude,
             lx: position.coords.longitude
         }))
-        console.log(this.state.ly, this.state.lx)
+        console.log("a")
     }
 
 

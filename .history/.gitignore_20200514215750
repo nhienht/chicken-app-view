@@ -13,4 +13,3 @@ history/**/*
 
 # macOS
 .DS_Store
-.gitignore
