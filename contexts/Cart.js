@@ -1,24 +1,28 @@
 import React from 'react'
-import {AsyncStorage} from 'react-native'
+import { AsyncStorage, Alert } from 'react-native'
+import Axios from 'axios'
 
 export const CartContext = React.createContext();
 export class CartProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            phone: "",
+            address: "",
             cartItems: [],
             chooseProduct: null,
             Count: 0,
             Total: '0',
             ly: 0,
-            lx: 0
-            
+            lx: 0,
+            userId: null
         };
         this.addToCart = this.addToCart.bind(this);
         this.chooseToProduct = this.chooseToProduct.bind(this);
         this.changeUnit = this.changeUnit.bind(this);
         this.removeItem = this.removeItem.bind(this);
         this.order = this.order.bind(this);
+        this.onChange = this.onChange.bind(this)
     }
 
     // addToCart(product){
@@ -27,6 +31,13 @@ export class CartProvider extends React.Component {
     //         cartItems: this.state.cartItems.concat(product)
     //     });
     // }
+    componentDidMount() {
+        AsyncStorage.getItem("id").then(res => this.setState({userId: res}))
+        navigator.geolocation.getCurrentPosition(position => this.setState({
+            ly: position.coords.latitude,
+            lx: position.coords.longitude
+        }))
+    }
 
     addToCart(item) {
         const existItem = this.state.cartItems.filter(x => x.id === item.id);
@@ -71,10 +82,10 @@ export class CartProvider extends React.Component {
 
         if (value < existItem[0].units) {
             Count -= 1,
-            Total =JSON.stringify(JSON.parse(this.state.Total) - JSON.parse(item.price))
+                Total = JSON.stringify(JSON.parse(this.state.Total) - JSON.parse(item.price))
         } else {
             Count += 1,
-            Total =JSON.stringify(JSON.parse(this.state.Total) + JSON.parse(item.price)) 
+                Total = JSON.stringify(JSON.parse(this.state.Total) + JSON.parse(item.price))
         }
 
         this.setState({
@@ -83,26 +94,40 @@ export class CartProvider extends React.Component {
         })
     }
 
-    removeItem(item){
-        const withoutItem = this.state.cartItems.filter(x => x.id != item.id)
-        const count = this.state.cartItems.filter(x => x.id == item.id)[0].units 
+    onChange(e, name) {
         this.setState({
-            cartItems: withoutItem,
-            Count : this.state.Count - count,
-            Total : JSON.stringify(JSON.parse(this.state.Total) - JSON.parse(item.price*count))
+            [name]: e.nativeEvent.text
         })
     }
 
-    async order(){
-        await navigator.geolocation.getCurrentPosition(position => this.setState({
-            ly : position.coords.latitude,
-            lx: position.coords.longitude
-        }))
-        console.log(this.state.ly, this.state.lx)
-        AsyncStorage.getItem("id").then(res =>{
-            
+    removeItem(item) {
+        const withoutItem = this.state.cartItems.filter(x => x.id != item.id)
+        const count = this.state.cartItems.filter(x => x.id == item.id)[0].units
+        this.setState({
+            cartItems: withoutItem,
+            Count: this.state.Count - count,
+            Total: JSON.stringify(JSON.parse(this.state.Total) - JSON.parse(item.price * count))
+        })
+    }
+
+    async order() {
+        const { cartItems, userId, phone, address, lx, ly } = this.state
+        products = cartItems.map(x => {
+            return { [`${x.id}`]: x.units }
         })
 
+        const data = {
+            userId,
+            phone,
+            address,
+            lx,
+            ly,
+            products
+        }
+
+        await Axios.post("store/bill/create", data)
+            .then(res => Alert.alert(`Đặt hàng thành công, mã đơn hàng của bạn là ${res.data.billId}`))
+            .catch(() => Alert.alert(`Đặt hàng không thành công`))
     }
 
 
@@ -113,11 +138,14 @@ export class CartProvider extends React.Component {
                 chooseProduct: this.state.chooseProduct,
                 Count: this.state.Count,
                 Total: this.state.Total,
+                phone: this.state.phone,
+                address: this.state.address,
                 addToCart: this.addToCart,
                 chooseToProduct: this.chooseToProduct,
                 changeUnit: this.changeUnit,
-                removeItem : this.removeItem,
-                order : this.order
+                removeItem: this.removeItem,
+                order: this.order,
+                onChange: this.onChange
             }}>
                 {this.props.children}
             </CartContext.Provider>

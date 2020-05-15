@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, Button, Modal, Alert } from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import img from '../../assets/conga.jpg'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ActionBarImage from '../store/ActionBarImage'
@@ -74,8 +75,8 @@ const styles = StyleSheet.create({
 
     },
     image: {
-        width: 340,
-        height: 340,
+        width: wp("40%"),
+        height: hp("20%"),
         alignSelf: 'center',
     },
     title:{
