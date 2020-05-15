@@ -20,7 +20,5 @@ export default function Features(props) {
         </CartProvider>
       </FarmProvider>
     </StoreProvider>
-
-
   );
 }

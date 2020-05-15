@@ -17,7 +17,7 @@ export default class BillDetail extends React.Component {
         return (
             <StoreContext.Consumer>
                 {
-                    ({ chooseBill, products }) =>
+                    ({ chooseBill }) =>
                         <View>
                             <Text style={styles.title}>Thông tin khách hàng:</Text>
                             <View style={styles.component}>
@@ -28,7 +28,7 @@ export default class BillDetail extends React.Component {
                             </View>
                             <Text style={styles.title}>Thông tin sản phẩm:</Text>
                             <FlatList
-                                data={products}
+                                data={chooseBill.products}
                                 renderItem={({ item }) =>
                                     <ProdcutItemInStore
                                         category={item}
