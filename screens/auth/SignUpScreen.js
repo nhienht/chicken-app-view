@@ -19,20 +19,23 @@ class SignUpScreen extends Component {
           enter: '',
           email: '',
           address: '',
-          phone: '',
+          phonenumber: '',
+          code: '',
         };
       }
       
       onLogin() {
-        const { username, password, enter, email, address, phone } = this.state;
+        const { username, password, enter, email, address, phonenumber, code } = this.state;
         const item = {
             username: username,
             password: password,
-            enter: enter,
+            confirm_password: enter,
             email: email,
             address: address,
-            
-            phone: phone
+            phonenumber: phonenumber,
+            code : code,
+            lx: 0,
+            ly: 0
         }
         if(username==""){
             Alert.alert('Tên không được bỏ trống!');
@@ -43,14 +46,22 @@ class SignUpScreen extends Component {
         else if(address==""){
             Alert.alert('Địa chỉ không được bỏ trống!');
         }
-        else if(phone.length!=10){
+        else if(phonenumber.length!=10){
             Alert.alert('Số điện thoại không hợp lệ!');
         }
         else if(password==""){
             Alert.alert('Mật khẩu không được bỏ trống!');
         }
+        else if(code==""){
+          Alert.alert('Chứng minh nhân dân không được bỏ trống!');
+      }
         else{
-        axios.post(`/register?email=${email}&password=${password}&username=${username}&address=${address}&confirm_password=${enter}&phonenumber=${phone}`).then(res => {
+          navigator.geolocation.getCurrentPosition(position => {
+            item.lx = position.coords.latitude
+            item.ly = position.coords.longitude
+          }
+        )
+        axios.post(`user/auth/register`, item).then(res => {
             if(res.data.success) {
                 Alert.alert('Bạn đã đăng ký thành công. Vui lòng đăng nhập!');
                 this.props.navigation.navigate('Welcome')
@@ -83,8 +94,8 @@ class SignUpScreen extends Component {
               style={styles.input}
             />
             <TextInput
-              value={this.state.phone}
-              onChangeText={(phone) => this.setState({ phone })}
+              value={this.state.phonenumber}
+              onChangeText={(phonenumber) => this.setState({ phonenumber })}
               placeholder={'Phone'}
               style={styles.input}
             />
@@ -102,7 +113,12 @@ class SignUpScreen extends Component {
               secureTextEntry={true}
               style={styles.input}
             />
-            
+             <TextInput
+              value={this.state.code}
+              onChangeText={(code) => this.setState({code})}
+              placeholder={'Chứng minh nhân dân'}
+              style={styles.input}
+            />
             
             <Button
               title={'Đăng ký'}
