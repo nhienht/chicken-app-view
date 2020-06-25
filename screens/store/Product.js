@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, Button, Modal, Alert } from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import img from '../../assets/conga.jpg'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ActionBarImage from '../store/ActionBarImage'
@@ -43,25 +43,24 @@ export default class Product extends React.Component {
     render() {
         return (
             <CartContext.Consumer>
-                {({addToCart, chooseProduct}) =>
+                {({ addToCart, chooseProduct }) =>
                     <View style={styles.container}>
-                    <Image style={styles.image} source={{uri:`https://68fe1be7.ngrok.io/images?image=${chooseProduct.images}`}} />
-                    <Text style={styles.title}>Tên sản phẩm: {chooseProduct.name} </Text>
-                    <Text style={styles.types}>Loại: {chooseProduct.types}</Text>
-                    <Text style={styles.des}>Mô tả: {chooseProduct.description} </Text>
-                    <Text style={styles.price}>Giá tiền: {chooseProduct.price}</Text>
-                    <Text style={styles.infor}>Tên cửa hàng: {chooseProduct.storeName} </Text>
-                    <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-                        <TouchableOpacity style={styles.button} onPress={() => 
-                           {
+                        <Image style={styles.image} source={{ uri: `https://d67b11eddaf7.ngrok.io/images?image=${chooseProduct.images}` }} />
+                        <Text style={styles.title}>Tên sản phẩm: {chooseProduct.name} </Text>
+                        <Text style={styles.types}>Loại: {chooseProduct.types}</Text>
+                        <Text style={styles.des}>Mô tả: {chooseProduct.description} </Text>
+                        <Text style={styles.price}>Giá tiền: {chooseProduct.price}</Text>
+                        <Text style={styles.infor}>Tên cửa hàng: {chooseProduct.storeName} </Text>
+                        <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                            <TouchableOpacity style={styles.button} onPress={() => {
                                 addToCart(chooseProduct)
                                 this._simpleAlertHandler
                             }}>
-                            <Text style={styles.text}>Chọn Mua</Text>
-                        </TouchableOpacity>
+                                <Text style={styles.text}>Chọn Mua</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
-                    }         
+                }
             </CartContext.Consumer>
         );
     }
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
         height: hp("20%"),
         alignSelf: 'center',
     },
-    title:{
+    title: {
         fontSize: 26,
         color: '#363',
         textAlign: 'center'
@@ -120,10 +119,10 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         paddingBottom: 10
     },
-    types:{
+    types: {
         margin: 10,
         fontSize: 16,
-        textAlign:'center',
+        textAlign: 'center',
         color: '#888'
 
     }

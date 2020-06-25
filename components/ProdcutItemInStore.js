@@ -5,7 +5,7 @@ export default function ProductItems(props) {
     const { category, onPress } = props;
     return (
             <View style={styles.container}>
-                <Image style={styles.img} source={{uri: `https://68fe1be7.ngrok.io/images?image=${category.images}`}}></Image>
+                <Image style={styles.img} source={{uri: `https://a6d53173a875.ngrok.io/images?image=${category.images}`}}></Image>
                 <View style={{top: 30}}>
                     <Text>Tên sản phẩm: {category.name}</Text>
                     <Text>Giá sản phẩm: {category.price}</Text>

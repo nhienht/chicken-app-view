@@ -16,7 +16,7 @@ export default class Diagnotics extends React.Component {
             lat: null,
             modalVisible: false,
             solution: null,
-            link: 'https://68fe1be7.ngrok.io',
+            link: 'https://a6d53173a875.ngrok.io',
             sickness: null,
             solution: null,
             phoneNumber: null,
@@ -69,12 +69,14 @@ export default class Diagnotics extends React.Component {
                 if (res.success) {
                     const solution = res.solution
                     const newSolution = solution.split("\\n")
+                    console.log(res)
                     this.setState({
                         sickness: res.sickness,
                         solution: newSolution,
                         phoneNumber: res.Department,
                     })
                 } else {
+                    console.log(res)
                     this.setState({
                         msg: res.mgs,
                     })

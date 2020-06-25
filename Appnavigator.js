@@ -40,6 +40,7 @@ import Products from './screens/store/Products'
 import Product from './screens/store/Product'
 import Goods from './screens/store/Goods'
 import Order from './screens/store/Order'
+import ChatBot from './screens/chats/ChatBot'
 
 /* import SettingStack Screens */
 import Setting from './screens/settings/Settings'
@@ -91,7 +92,7 @@ DiagnoticsStack.navigationOptions = {
 }
 
 /*Create StoreStack */
-const StoreStack = createStackNavigator({ Store, Products, Product, Goods, Order})
+const StoreStack = createStackNavigator({ Store, Products, Product, Goods, Order, ChatBot})
 StoreStack.navigationOptions = {
     tabBarLabel: 'Cửa hàng',
     tabBarIcon: ({ focused }) => {

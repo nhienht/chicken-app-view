@@ -8,7 +8,7 @@ import { StoreProvider } from './contexts/StoreContext'
 
 const AppContainer = createAppContainer(AppNavigator)
 
-axios.defaults.baseURL = 'https://68fe1be7.ngrok.io'
+axios.defaults.baseURL = 'https://a6d53173a875.ngrok.io'
 console.disableYellowBox = true;
 export default function Features(props) {
   console.ignoredYellowBox = ['Warning: Each'];
