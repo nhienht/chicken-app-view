@@ -10,7 +10,7 @@ export default function GoodsItem(props) {
             {({ changeUnit, removeItem }) =>
                 <View style={styles.container}>
                     <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
-                    <Image style={styles.image} source={{uri:`https://68fe1be7.ngrok.io/images?image=${category.images}`}} onPress={onPress} />
+                    <Image style={styles.image} source={{uri:`https://a6d53173a875.ngrok.io/images?image=${category.images}`}} onPress={onPress} />
                     </TouchableOpacity>
                     <View style={styles.text}>
                         <Text style={styles.title}>Tên sản phẩm: {category.name}</Text>

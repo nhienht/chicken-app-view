@@ -8,7 +8,7 @@ export default function ProductItems(props) {
     return (
         <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
             <View style={styles.container}>
-            <Image style={styles.image} source={{uri:`https://68fe1be7.ngrok.io/images?image=${category.images}`}} />
+            <Image style={styles.image} source={{uri:`https://a6d53173a875.ngrok.io/images?image=${category.images}`}} />
                 <Text style={styles.title}>{category.name}</Text>
                 <Text style={styles.price}>{category.price}</Text>
                

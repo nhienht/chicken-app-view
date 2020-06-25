@@ -5,37 +5,37 @@ import muahang from '../../assets/muahang.png'
 import StoreButton from '../../components/StoreButton'
 import * as Facebook from 'expo-facebook';
 
-async function logIn() {
-    try {
-      await Facebook.initializeAsync('853519481774732');
-      const {
-        type,
-        token,
-        expires,
-        permissions,
-        declinedPermissions,
-      } = await Facebook.logInWithReadPermissionsAsync({
-        permissions: ['public_profile'],
-      });
-      if (type === 'success') {
-        // Get the user's name using Facebook's Graph API
-        const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-        Linking.openURL("https://www.facebook.com/Chicken-Management-System-101131918088369/?modal=admin_todo_tour")
-      } else {
-        // type === 'cancel'
-      }
-    } catch ({ message }) {
-      alert(`Facebook Login Error: ${message}`);
-    }
-  }
+// async function logIn() {
+//     try {
+//       await Facebook.initializeAsync('853519481774732');
+//       const {
+//         type,
+//         token,
+//         expires,
+//         permissions,
+//         declinedPermissions,
+//       } = await Facebook.logInWithReadPermissionsAsync({
+//         permissions: ['public_profile'],
+//       });
+//       if (type === 'success') {
+//         // Get the user's name using Facebook's Graph API
+//         const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+//         Linking.openURL("https://www.facebook.com/Chicken-Management-System-101131918088369/?modal=admin_todo_tour")
+//       } else {
+//         // type === 'cancel'
+//       }
+//     } catch ({ message }) {
+//       alert(`Facebook Login Error: ${message}`);
+//     }
+//   }
 
 export default class Store extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             stores: [
-                { id: 1, title: "Liên hệ tư vấn", Image: lienhe },
-                { id: 2, title: "Mua hàng", Image: muahang }
+                { id: 1, title: "Liên hệ tư vấn", Image: lienhe, pageName: "ChatBot" },
+                { id: 2, title: "Mua hàng", Image: muahang, pageName: "Products" }
             ],
             longitude: 0,
             latitude: 0
@@ -50,11 +50,9 @@ export default class Store extends React.Component {
                 {stores.map(store => (<StoreButton key={store.id} 
                                                     animal={store}
                                                     onPress = {() => {
-                                                      if (store.id == 1 ) {logIn();}
-                                                      else {
-                                                        navigation.navigate('Products');                                               
+                                                      
+                                                        navigation.navigate(store.pageName);                                               
                                                        }
-                                                     }
                                                     }
                                     />))}
             </View>
