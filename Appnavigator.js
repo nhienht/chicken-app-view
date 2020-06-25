@@ -52,10 +52,14 @@ import AddProducts from './screens/farm/AddProducts'
 
 /* import Home Store Screen */
 import HomeStore from './storescreens/home/HomeStore'
+import AddProduct from './storescreens/home/AddProduct'
+import ProductDetail from './storescreens/home/ProductDetail'
+import UpdateProduct from './storescreens/home/UpdateProduct'
 
 /* import Bill in Store */
 import Bill from './storescreens/bill/Bill'
 import BillDetail from './storescreens/bill/BillDetail'
+
 
 /* Create AuthStack */
 const AuthStackNavigator = createStackNavigator({
@@ -162,7 +166,7 @@ const AppDrawerNavigator = createDrawerNavigator({
     Home: AppStackNavigator
 })
 
-const StoreHomeStack = createStackNavigator({ HomeStore})
+const StoreHomeStack = createStackNavigator({ HomeStore, AddProduct, ProductDetail, UpdateProduct})
 StoreHomeStack.navigationOptions = {
     tabBarLabel: 'Sản phẩm',
     tabBarIcon: ({ focused }) => {
@@ -184,9 +188,12 @@ BillStack.navigationOptions = {
 }
 
 
+
 const StoreTabNavigator = createBottomTabNavigator({
     StoreHomeStack,
-    BillStack
+    BillStack,
+    SettingStack
+    
     
 })
 

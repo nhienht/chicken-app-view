@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import NumericInput from 'react-native-numeric-input'
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { CartContext } from '../contexts/Cart'
 export default function GoodsItem(props) {
     const { category, onPress } = props;
@@ -51,8 +52,8 @@ const styles = StyleSheet.create({
 
     },
     image: {
-        height: 120,
-        width: 120,
+        height: hp("15%"),
+        width: wp("25%"),
         borderColor: '#000',
         padding: 10,
         margin: 10

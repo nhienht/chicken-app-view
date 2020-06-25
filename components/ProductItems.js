@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
         margin: 5,
         flex: 1,
         
+        
     },
     title: {
         marginTop: 10,
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     },
     image:{
         height: hp("20%"),
-        width:wp("40%"),
+        width:wp("43%"),
         borderColor: '#000',
         padding: 10            
     },

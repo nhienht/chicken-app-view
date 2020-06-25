@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ImageItem from '../../assets/vohang.png'
 import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
-import { CartContext } from '../../contexts/Cart'
+import { CartContext } from '../contexts/Cart'
 
 export default class ActionBarImage extends Component {
   constructor(props) {

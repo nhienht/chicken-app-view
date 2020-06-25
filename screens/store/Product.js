@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image, Button, Modal, Alert } from 'react-nativ
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import img from '../../assets/conga.jpg'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import ActionBarImage from '../store/ActionBarImage'
+import CartImage from '../../components/CartImage'
 import { Overlay } from 'react-native-elements'
 import { CartContext } from '../../contexts/Cart'
 export default class Product extends React.Component {
@@ -17,7 +17,7 @@ export default class Product extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: 'Sản Phẩm',
-            headerRight: <ActionBarImage onPress={() => navigation.navigate("Goods")} />,
+            headerRight: <CartImage onPress={() => navigation.navigate("Goods")} />,
         };
     };
 
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
 
     },
     image: {
-        width: wp("40%"),
-        height: hp("20%"),
+        width: wp("55%"),
+        height: hp("35%"),
         alignSelf: 'center',
     },
     title: {
